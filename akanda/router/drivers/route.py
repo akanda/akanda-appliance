@@ -7,7 +7,7 @@ LOG = logging.getLogger(__name__)
 
 
 class RouteManager(base.Manager):
-    EXECUTABLE = '/sbin/route'
+    EXECUTABLE = '/sbin/route -n'
 
     def __init__(self, root_helper='sudo'):
         super(RouteManager, self).__init__(root_helper)
@@ -26,7 +26,7 @@ class RouteManager(base.Manager):
         if gateway_ip.version == 6:
             version += '6'
         try:
-            current = self.sudo('-n', 'get', version, 'default')
+            current = self.sudo('get', version, 'default')
         except:
             current = None
 
