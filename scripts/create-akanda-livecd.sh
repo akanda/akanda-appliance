@@ -361,6 +361,10 @@ inetd=NO
 amd_master=NO
 EOF
 
+echo "[*] Replace rc file"
+cp $HERE/etc/rc $WDIR/etc/rc
+chmod 644 $WDIR/etc/rc
+
 echo "[*] Add some stuff to sysctl.conf"
 cat > $WDIR/etc/sysctl.conf <<EOF
 net.inet6.ip6.dad_count=0
