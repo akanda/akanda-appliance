@@ -262,6 +262,7 @@ cat > $WDIR/etc/rc.conf.local <<EOF
 spamlogd_flags=NO
 inetd=NO
 amd_master=NO
+sendmail_flags=NO
 EOF
 
 echo "[*] Setting default password..."
