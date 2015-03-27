@@ -18,6 +18,7 @@
 import functools
 import logging
 import re
+import subprocess
 
 import netaddr
 
@@ -396,12 +397,26 @@ class IPManager(base.Manager):
                 '-%s' % version, 'route', 'del', 'default', 'via', current,
                 'dev', ifname
             )
+            try:
+                # Ensure the route exists
+                self.sudo(
+                    '-%s' % version, 'route', 'add', desired, 'dev', ifname
+                )
+            except subprocess.CalledProcessError:
+                pass  # the route already exists
             return self.sudo(
                 '-%s' % version, 'route', 'add', 'default', 'via', desired,
                 'dev', ifname
             )
         if not current:
             # Add the desired gateway
+            try:
+                # Ensure the route exists
+                self.sudo(
+                    '-%s' % version, 'route', 'add', desired, 'dev', ifname
+                )
+            except subprocess.CalledProcessError:
+                pass  # the route already exists
             return self.sudo(
                 '-%s' % version, 'route', 'add', 'default', 'via', desired,
                 'dev', ifname

@@ -94,6 +94,7 @@ class RouteTest(unittest2.TestCase):
                             '-4', 'route', 'del', 'default', 'via',
                             get.return_value, 'dev', 'eth1'
                         ),
+                        mock.call('-4', 'route', 'add', ip_s, 'dev', 'eth1'),
                         mock.call(
                             '-4', 'route', 'add', 'default', 'via', ip_s,
                             'dev', 'eth1'
@@ -139,6 +140,7 @@ class RouteTest(unittest2.TestCase):
                         '-6', 'route', 'del', 'default', 'via',
                         get.return_value, 'dev', 'eth1'
                     ),
+                    mock.call('-6', 'route', 'add', ip_s, 'dev', 'eth1'),
                     mock.call(
                         '-6', 'route', 'add', 'default', 'via', ip_s,
                         'dev', 'eth1'
