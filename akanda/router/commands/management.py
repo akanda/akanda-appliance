@@ -97,4 +97,3 @@ def configure_management():
                 configure_ssh(ip_addr.ip)
                 configure_gunicorn(ip_addr.ip)
         break
-
